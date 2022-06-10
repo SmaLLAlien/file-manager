@@ -1,4 +1,4 @@
-export const CdHandler = (path) => {
+export const cdHandler = (path) => {
     try {
         process.chdir(path);
     } catch (e) {

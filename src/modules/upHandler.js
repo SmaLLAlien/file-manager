@@ -1,3 +1,3 @@
-export const UpHandler = () => {
+export const upHandler = () => {
     process.chdir('../');
 }

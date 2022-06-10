@@ -1,7 +1,7 @@
 import { readdir } from 'fs/promises';
 import { statSync } from 'fs';
 
-export const LsHandler = async () => {
+export const lsHandler = async () => {
     try {
         const currPath = process.cwd();
         let files = await readdir(currPath);

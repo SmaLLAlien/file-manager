@@ -20,8 +20,8 @@ process.stdout.write(`You are currently in ${process.cwd()} directory \n`);
 
 process.stdin.on('data', (chunk) => {
     const userInput = chunk.toString();
-    const command = userInput.trim().split(' ')[0];
-    const commandArgs = userInput.trim().split(' ')[1];
+    const [command, ...commandArgs] = userInput.trim().split(' ');
+
     if (ALLOWED_COMMANDS.includes(command)) {
         switchCommandHandler(command, commandArgs);
         process.stdout.write(`You are currently in ${process.cwd()} directory \n`);
