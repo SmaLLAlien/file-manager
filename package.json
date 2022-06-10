@@ -2,11 +2,12 @@
   "name": "file-manager",
   "version": "1.0.0",
   "description": "",
-  "main": ".mongorc.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js"
   },
+  "type": "module",
   "author": "SmaLLAlien",
   "license": "ISC"
 }
