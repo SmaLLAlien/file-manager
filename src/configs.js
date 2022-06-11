@@ -1,4 +1,4 @@
-const COMMANDS = {
+export const COMMANDS = {
     up: 'up',
     cd: 'cd',
     ls: 'ls',
@@ -12,11 +12,11 @@ const COMMANDS = {
     hash: 'hash',
     compress: 'compress',
     decompress: 'decompress',
-}
+};
 
-const DEFAULT_USER_NAME = 'John Doe';
+export const DEFAULT_USER_NAME = 'John Doe';
 
-const ALLOWED_COMMANDS = [
+export const ALLOWED_COMMANDS = [
     COMMANDS.up,
     COMMANDS.cd,
     COMMANDS.ls,
@@ -32,4 +32,18 @@ const ALLOWED_COMMANDS = [
     COMMANDS.decompress,
 ];
 
-export {COMMANDS, ALLOWED_COMMANDS, DEFAULT_USER_NAME}
+export const OS_OPTIONS = {
+    eol: 'EOL',
+    cpus: 'cpus',
+    homedir: 'homedir',
+    username: 'username',
+    architecture: 'architecture',
+};
+
+export const ALLOWED_OS_OPTIONS = [
+    OS_OPTIONS.eol,
+    OS_OPTIONS.cpus,
+    OS_OPTIONS.homedir,
+    OS_OPTIONS.username,
+    OS_OPTIONS.architecture,
+];

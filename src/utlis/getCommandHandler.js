@@ -8,6 +8,7 @@ import { renameHandler } from "../modules/renameHandler.js";
 import { copyFileHandler } from "../modules/copyHandler.js";
 import { moveFileHandler } from "../modules/moveFileHandler.js";
 import { removeFileHandler } from "../modules/removeHandler.js";
+import { osHandler } from "../modules/osHandler.js";
 
 export const switchCommandHandler = (command, commandArgs) => {
     switch (command) {
@@ -45,6 +46,10 @@ export const switchCommandHandler = (command, commandArgs) => {
         }
         case COMMANDS.rm: {
             removeFileHandler(commandArgs[0]);
+            return;
+        }
+        case COMMANDS.os: {
+            osHandler(commandArgs[0]);
             return;
         }
     }
