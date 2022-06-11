@@ -2,8 +2,9 @@ import { homedir } from 'os';
 
 
 import { getUser } from './utlis/getUser.js';
-import {ALLOWED_COMMANDS} from "./configs.js";
+import {ALLOWED_COMMANDS, ERRORS} from "./configs.js";
 import {switchCommandHandler} from "./utlis/getCommandHandler.js";
+import {handleError} from "./utlis/handleError.js";
 
 // console.log(ALLOWED_COMMANDS);
 
@@ -26,6 +27,6 @@ process.stdin.on('data', (chunk) => {
         switchCommandHandler(command, commandArgs);
         process.stdout.write(`You are currently in ${process.cwd()} directory \n`);
     } else {
-        process.stderr.write('Invalid input\n');
+        handleError(ERRORS.invalidInput);
     }
 });

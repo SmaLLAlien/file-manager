@@ -1,16 +1,18 @@
 import { writeFile } from 'fs/promises';
+import { handleError } from "../utlis/handleError.js";
+import { ERRORS } from "../configs.js";
 
 export const addFileHandler = async (fileName) => {
     try {
         if (!fileName) {
-            throw Error('Invalid input');
+            throw Error(ERRORS.invalidInput);
         }
         await writeFile(fileName, '', { flag: 'wx' });
     } catch (e) {
-        if (e.message === 'Invalid input') {
-            process.stderr.write('Invalid input\n');
+        if (e.message === ERRORS.invalidInput) {
+            handleError(ERRORS.invalidInput);
         } else {
-            process.stderr.write('Operation failed\n');
+            handleError(ERRORS.failed);
         }
     }
 }

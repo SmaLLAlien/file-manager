@@ -1,4 +1,6 @@
 import { createReadStream } from 'fs';
+import { handleError } from "../utlis/handleError.js";
+import { ERRORS } from "../configs.js";
 
 export const catHandler = (path) => {
     try {
@@ -6,6 +8,6 @@ export const catHandler = (path) => {
         readStream.on('error', () => process.stderr.write(`Operation failed\n`)).pipe(process.stdout);
         readStream.on('end', console.log);
     } catch (e) {
-        process.stderr.write('Operation failed\n');
+        handleError(ERRORS.failed);
     }
 }

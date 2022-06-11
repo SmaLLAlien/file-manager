@@ -1,23 +1,24 @@
-import { ALLOWED_OS_OPTIONS } from "../configs.js";
+import { ALLOWED_OS_OPTIONS, ERRORS } from "../configs.js";
 import { callOsFunc } from "../utlis/callOsFunc.js";
+import { handleError } from "../utlis/handleError.js";
 
 export const osHandler = async (args) => {
     try {
        if (!args || typeof args !== "string" || !args.startsWith('--')) {
-           throw new Error('Invalid input');
+           throw new Error(ERRORS.invalidInput);
        } else {
            const userOption = args.replace('--', '').trim();
            if (ALLOWED_OS_OPTIONS.includes(userOption)) {
                callOsFunc(userOption)
            } else {
-               throw new Error('Invalid input');
+               throw new Error(ERRORS.invalidInput);
            }
        }
     } catch (e) {
-        if (e.message === 'Invalid input') {
-            process.stderr.write('Invalid input\n');
+        if (e.message === ERRORS.invalidInput) {
+            handleError(ERRORS.invalidInput);
         } else {
-            process.stderr.write('Operation failed\n');
+            handleError(ERRORS.failed);
         }
     }
 }

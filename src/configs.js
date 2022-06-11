@@ -47,3 +47,8 @@ export const ALLOWED_OS_OPTIONS = [
     OS_OPTIONS.username,
     OS_OPTIONS.architecture,
 ];
+
+export const ERRORS = {
+    failed: 'Operation failed',
+    invalidInput: 'Invalid input'
+};
