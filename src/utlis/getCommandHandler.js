@@ -9,6 +9,7 @@ import { copyFileHandler } from "../modules/copyHandler.js";
 import { moveFileHandler } from "../modules/moveFileHandler.js";
 import { removeFileHandler } from "../modules/removeHandler.js";
 import { osHandler } from "../modules/osHandler.js";
+import {hashHandler} from "../modules/hashHandler.js";
 
 export const switchCommandHandler = (command, commandArgs) => {
     switch (command) {
@@ -50,6 +51,10 @@ export const switchCommandHandler = (command, commandArgs) => {
         }
         case COMMANDS.os: {
             osHandler(commandArgs[0]);
+            return;
+        }
+        case COMMANDS.hash: {
+            hashHandler(commandArgs[0]);
             return;
         }
     }

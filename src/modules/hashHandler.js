@@ -1,24 +1,27 @@
-import { isFileExists } from "../utlis/isFileExist.js";
-import { unlink } from 'fs/promises';
+import { readFile } from 'fs/promises';
+import { isFileExists } from '../utlis/isFileExist.js';
 import { handleError } from "../utlis/handleError.js";
 import { ERRORS } from "../configs.js";
+import { createHash } from 'crypto';
 import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 
-export const removeFileHandler = async (file) => {
+export const hashHandler = async (args) => {
     try {
-        if (!file || typeof file !== 'string' || !file.trim()) {
+        if (!args || typeof args !== 'string') {
             throw new Error(ERRORS.invalidInput);
         }
 
-        const isFileExist = await isFileExists(file);
+        const fileName = args.trim();
+        const isFileExist = await isFileExists(fileName);
 
         if (!isFileExist) {
             throw new Error(ERRORS.failed);
         } else {
-            await unlink(file);
+            const fileContent = await readFile(fileName, 'utf-8');
+            const stringHash = await createHash('sha256').update(fileContent).digest('hex');
+            process.stdout.write(`${stringHash}\n`);
             writeCurrDirectory();
         }
-
     } catch (e) {
         if (e.message === ERRORS.invalidInput) {
             handleError(ERRORS.invalidInput);

@@ -2,6 +2,7 @@ import { rename } from 'fs/promises';
 import { isFileExists } from '../utlis/isFileExist.js';
 import { handleError } from "../utlis/handleError.js";
 import { ERRORS } from "../configs.js";
+import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 
 export const renameHandler = async (args) => {
     try {
@@ -20,6 +21,7 @@ export const renameHandler = async (args) => {
                 throw new Error(ERRORS.failed);
             } else {
                 await rename(fileNames[0], fileNames[1]);
+                writeCurrDirectory();
             }
         }
     } catch (e) {

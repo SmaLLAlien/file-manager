@@ -3,6 +3,7 @@ import { join } from "path";
 import { rename } from 'fs/promises';
 import { handleError } from "../utlis/handleError.js";
 import { ERRORS } from "../configs.js";
+import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 
 export const moveFileHandler = async (args) => {
     try {
@@ -19,6 +20,7 @@ export const moveFileHandler = async (args) => {
             throw new Error(ERRORS.failed);
         } else {
             await rename(curFile, join(destinationFolder, curFile));
+            writeCurrDirectory();
         }
 
     } catch (e) {

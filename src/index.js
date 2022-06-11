@@ -18,7 +18,6 @@ process.stdin.on('data', (chunk) => {
 
     if (ALLOWED_COMMANDS.includes(command)) {
         switchCommandHandler(command, commandArgs);
-        writeCurrDirectory();
     } else {
         handleError(ERRORS.invalidInput);
     }
