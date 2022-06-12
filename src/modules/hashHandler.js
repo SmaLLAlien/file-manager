@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { createReadStream } from 'fs';
 import { isFileExists } from '../utlis/isFileExist.js';
 import { handleError } from "../utlis/handleError.js";
 import { ERRORS } from "../configs.js";
@@ -19,10 +19,14 @@ export const hashHandler = async (args) => {
             console.error('Current file doesnt exist');
             throw new Error(ERRORS.failed);
         } else {
-            const fileContent = await readFile(fileName, 'utf-8');
-            const stringHash = await createHash('sha256').update(fileContent).digest('hex');
-            process.stdout.write(`${stringHash}\n`);
-            writeCurrDirectory();
+            const readStream = createReadStream(fileName, { encoding: 'utf-8' });
+            const hash = createHash('sha256');
+            hash.setEncoding('hex');
+            readStream.pipe(hash).pipe(process.stdout);
+            hash.on('close', () => {
+                console.log();
+                writeCurrDirectory();
+            })
         }
     } catch (e) {
         if (e.message === ERRORS.invalidInput) {
