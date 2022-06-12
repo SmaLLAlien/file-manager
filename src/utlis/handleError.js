@@ -1,4 +1,5 @@
 import { ERRORS } from "../configs.js";
+import { writeCurrDirectory } from "./writeCurrDirectory.js";
 
 export const handleError = error => {
     let msg = ERRORS.failed;
@@ -8,4 +9,5 @@ export const handleError = error => {
         msg = error;
     }
     process.stderr.write(`\x1b[91m${msg}\x1b[39m \n`);
+    writeCurrDirectory();
 }

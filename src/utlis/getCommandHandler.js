@@ -9,7 +9,9 @@ import { copyFileHandler } from "../modules/copyHandler.js";
 import { moveFileHandler } from "../modules/moveFileHandler.js";
 import { removeFileHandler } from "../modules/removeHandler.js";
 import { osHandler } from "../modules/osHandler.js";
-import {hashHandler} from "../modules/hashHandler.js";
+import { hashHandler } from "../modules/hashHandler.js";
+import { compressHandler } from "../modules/compressHandler.js";
+import { deCompressHandler } from "../modules/decompressHandler.js";
 
 export const switchCommandHandler = (command, commandArgs) => {
     switch (command) {
@@ -55,6 +57,14 @@ export const switchCommandHandler = (command, commandArgs) => {
         }
         case COMMANDS.hash: {
             hashHandler(commandArgs[0]);
+            return;
+        }
+        case COMMANDS.compress: {
+            compressHandler(commandArgs);
+            return;
+        }
+        case COMMANDS.decompress: {
+            deCompressHandler(commandArgs);
             return;
         }
     }
