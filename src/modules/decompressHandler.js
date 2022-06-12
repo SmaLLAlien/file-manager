@@ -3,7 +3,7 @@ import { isFileExists } from "../utlis/isFileExist.js";
 import { createReadStream, createWriteStream } from "fs";
 import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 import { handleError } from "../utlis/handleError.js";
-import * as zlib from 'zlib';
+import { createBrotliDecompress  } from 'zlib'
 
 export const deCompressHandler = async (args) => {
     try {
@@ -23,7 +23,7 @@ export const deCompressHandler = async (args) => {
         } else {
             const readStream = createReadStream(source);
             const writeStream = createWriteStream(destination);
-            const unZip = zlib.createGunzip();
+            const unZip = createBrotliDecompress();
             readStream.on('error', () => handleError(ERRORS.failed))
                 .pipe(unZip.on('error', () => handleError(ERRORS.failed)))
                 .pipe(writeStream.on('error', () => handleError(ERRORS.failed)));
