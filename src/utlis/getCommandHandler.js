@@ -67,5 +67,9 @@ export const switchCommandHandler = (command, commandArgs) => {
             deCompressHandler(commandArgs);
             return;
         }
+        case COMMANDS.exit: {
+            process.exit(1);
+            return;
+        }
     }
 }

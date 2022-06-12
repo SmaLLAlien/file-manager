@@ -4,6 +4,7 @@ import { switchCommandHandler } from "./utlis/getCommandHandler.js";
 import { handleError } from "./utlis/handleError.js";
 import { writeCurrDirectory } from "./utlis/writeCurrDirectory.js";
 import { changeUserDirectoryToHome } from "./utlis/changeUserDirectoryToHome.js";
+import { handleProcessExit } from "./utlis/handleProcessExit.js";
 
 const args = process.argv.slice(2);
 const user = getUser(args);
@@ -22,3 +23,7 @@ process.stdin.on('data', (chunk) => {
         handleError(ERRORS.invalidInput);
     }
 });
+
+[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType, index) => {
+    process.on(eventType, () => handleProcessExit(index + 1, user));
+})

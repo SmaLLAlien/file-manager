@@ -12,6 +12,7 @@ export const COMMANDS = {
     hash: 'hash',
     compress: 'compress',
     decompress: 'decompress',
+    exit: '.exit',
 };
 
 export const DEFAULT_USER_NAME = 'John Doe';
@@ -30,6 +31,7 @@ export const ALLOWED_COMMANDS = [
     COMMANDS.hash,
     COMMANDS.compress,
     COMMANDS.decompress,
+    COMMANDS.exit,
 ];
 
 export const OS_OPTIONS = {
