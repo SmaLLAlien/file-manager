@@ -7,7 +7,7 @@ import * as zlib from 'zlib';
 
 export const compressHandler = async (args) => {
     try {
-        const paths = args.filter(p => !!p).filter(p => p.trim());
+        const paths = args.filter(p => !!p).map(p => p.trim());
         if (!args || paths.length < 2) {
             console.error('Pleas check your paths to files');
             throw new Error(ERRORS.invalidInput);

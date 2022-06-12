@@ -9,6 +9,7 @@ export const moveFileHandler = async (args) => {
     try {
         const paths = args.filter(p => !!p);
         if (!args || paths.length < 2) {
+            console.error('Pleas check your paths to files');
             throw new Error(ERRORS.invalidInput);
         }
 
@@ -17,6 +18,7 @@ export const moveFileHandler = async (args) => {
         const isFileInDestinationFolderExist = await isFileExists(join(destinationFolder, curFile));
 
         if (!isCurExist || isFileInDestinationFolderExist) {
+            console.error('Current file doesnt exist or destination have been already existed');
             throw new Error(ERRORS.failed);
         } else {
             await rename(curFile, join(destinationFolder, curFile));

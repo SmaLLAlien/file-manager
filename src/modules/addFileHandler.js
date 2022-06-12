@@ -6,6 +6,7 @@ import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 export const addFileHandler = async (fileName) => {
     try {
         if (!fileName) {
+            console.error('File name is required');
             throw Error(ERRORS.invalidInput);
         }
         await writeFile(fileName, '', { flag: 'wx' });

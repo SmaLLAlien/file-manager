@@ -7,12 +7,14 @@ import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 export const removeFileHandler = async (file) => {
     try {
         if (!file || typeof file !== 'string' || !file.trim()) {
+            console.error('Pleas check your path to file');
             throw new Error(ERRORS.invalidInput);
         }
 
         const isFileExist = await isFileExists(file);
 
         if (!isFileExist) {
+            console.error('Current file doesnt exist');
             throw new Error(ERRORS.failed);
         } else {
             await unlink(file);

@@ -8,6 +8,7 @@ import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 export const hashHandler = async (args) => {
     try {
         if (!args || typeof args !== 'string') {
+            console.error('Pleas check your path to file');
             throw new Error(ERRORS.invalidInput);
         }
 
@@ -15,6 +16,7 @@ export const hashHandler = async (args) => {
         const isFileExist = await isFileExists(fileName);
 
         if (!isFileExist) {
+            console.error('Current file doesnt exist');
             throw new Error(ERRORS.failed);
         } else {
             const fileContent = await readFile(fileName, 'utf-8');

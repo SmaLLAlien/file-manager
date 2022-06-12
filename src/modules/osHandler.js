@@ -6,6 +6,7 @@ import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 export const osHandler = async (args) => {
     try {
        if (!args || typeof args !== "string" || !args.startsWith('--')) {
+           console.error('Pleas check your command arguments');
            throw new Error(ERRORS.invalidInput);
        } else {
            const userOption = args.replace('--', '').trim();
