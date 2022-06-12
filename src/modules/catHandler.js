@@ -6,7 +6,7 @@ import { writeCurrDirectory } from "../utlis/writeCurrDirectory.js";
 export const catHandler = (path) => {
     try {
         const readStream = createReadStream(path, { encoding: 'utf-8' });
-        readStream.on('error', () => process.stderr.write(`Operation failed\n`)).pipe(process.stdout);
+        readStream.on('error', () => handleError(ERRORS.failed)).pipe(process.stdout);
         readStream.on('end', () => {
             process.stdout.write('\n');
             writeCurrDirectory();

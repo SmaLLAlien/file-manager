@@ -15,7 +15,7 @@ writeCurrDirectory();
 
 process.stdin.on('data', (chunk) => {
     const userInput = chunk.toString();
-    const [command, ...commandArgs] = userInput.trim().split(' ');
+    const [command, ...commandArgs] = userInput.trim().split(' ').map(item => item.trim());
 
     if (ALLOWED_COMMANDS.includes(command)) {
         switchCommandHandler(command, commandArgs);
